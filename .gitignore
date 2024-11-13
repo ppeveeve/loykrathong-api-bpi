@@ -1,0 +1,13 @@
+# Go binary files
+/bin/
+/obj/
+
+# IDE and editor files
+.idea/
+.vscode/
+
+# Environment files
+# config/.env.*
+
+# Other files to ignore
+*.log

@@ -1,0 +1,11 @@
+# .gitattributes
+
+# Force LF line endings for all text files
+* text=auto
+
+# Explicitly specify files that should have LF line endings
+*.go text eol=lf
+*.go text eol=crlf
+*.json text eol=lf
+*.yaml text eol=lf
+*.env.dev text eol=lf

@@ -1,0 +1,98 @@
+basePath: /api/v1
+definitions:
+  handlers.GetKrathongListResponse:
+    properties:
+      data:
+        items:
+          $ref: '#/definitions/models.Krathong'
+        type: array
+      response_code:
+        type: string
+      response_message:
+        type: string
+    type: object
+  handlers.KrathongDataResponse:
+    properties:
+      data:
+        $ref: '#/definitions/models.Krathong'
+      response_code:
+        type: string
+      response_message:
+        type: string
+    type: object
+  models.Krathong:
+    properties:
+      created_at:
+        type: string
+      emp_department:
+        type: string
+      emp_name:
+        type: string
+      emp_wish:
+        type: string
+      krathong_id:
+        type: integer
+      krathong_type:
+        type: integer
+    type: object
+host: 10.144.130.86:8080
+info:
+  contact:
+    email: support@swagger.io
+    name: API Support
+    url: http://www.swagger.io/support
+  description: This is a API for the Loy Krathong festival.
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+  termsOfService: http://swagger.io/terms/
+  title: Loy Krathong API
+  version: "1.0"
+paths:
+  /krathong:
+    get:
+      description: Retrieve the latest 50 Krathong entries
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/handlers.GetKrathongListResponse'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/handlers.KrathongDataResponse'
+      summary: Get Krathongs
+      tags:
+      - Krathong
+    post:
+      consumes:
+      - application/json
+      description: Create a new Krathong entry
+      parameters:
+      - description: Krathong Data
+        in: body
+        name: krathong
+        required: true
+        schema:
+          $ref: '#/definitions/models.Krathong'
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: Created
+          schema:
+            $ref: '#/definitions/handlers.KrathongDataResponse'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/handlers.KrathongDataResponse'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/handlers.KrathongDataResponse'
+      summary: Create Krathong
+      tags:
+      - Krathong
+swagger: "2.0"
